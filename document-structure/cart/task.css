@@ -18,6 +18,13 @@ body {
   border-radius: 50%;
   padding: 2px 5px;
 }
+.cart__product-remove {
+  position: absolute;
+  bottom: 15%;
+  right: 10%;
+  color: red;
+  cursor: pointer;
+}
 
 .cart__product-image {
   border-radius: 6px;
@@ -34,6 +41,9 @@ body {
 .product__title {
   width: 100%;
   text-transform: uppercase;
+}
+.cart__title-hide {
+  display: none;
 }
 
 .product__image {
