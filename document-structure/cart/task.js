@@ -3,24 +3,6 @@ const cardsInBasket = document.querySelector('.cart__products');
 
 const cartTitle = document.querySelector('.cart__title');
 
-let start = Date.now();
-
-let timer = setInterval(() => {
-    let timePassed = Date.now() - start;
-
-    if (timePassed >= 2000) {
-        clearInterval(timer);
-        return;
-    }
-    draw(timePassed);
-
-}, 2000);
-
-function draw(timePassed) {
-
-    document.querySelector('.product__image').style.left = timePassed / 5 + 'px';
-}
-
 
 checkBasketTitle();
 function checkBasketTitle() {
@@ -82,7 +64,7 @@ product.forEach(element => {
             element.querySelector('.product__quantity-value').innerText++;
         }
 
-        if (click.className.includes('product__add')) {            
+        if (click.className.includes('product__add')) {
 
             let cardsProductArr = Array.from(document.querySelector('.cart__products').querySelectorAll('.cart__product'));
             let check = false;
