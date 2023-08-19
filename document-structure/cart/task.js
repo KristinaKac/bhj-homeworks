@@ -12,8 +12,6 @@ function checkBasketTitle() {
         cartTitle.classList.remove('cart__title-hide');
     }
 }
-
-
 cardsInBasket.addEventListener('click', function removeElementFromBasket(event) {
     let click = event.target;
     if (click.className.includes('cart__product-remove')) {
@@ -70,13 +68,11 @@ product.forEach(element => {
             let check = false;
 
             if (cardsProductArr.length != 0) {
-                cardsProductArr.forEach(el => {
-                    if (el.dataset.id === element.dataset.id) {
-
-                        el.querySelector('.cart__product-count').innerText = Number(el.querySelector('.cart__product-count').innerText) + Number(element.querySelector('.product__quantity-value').innerText);
-                        check = true;
-                    }
-                });
+                const productInCard = cardsProductArr.find(el => el.dataset.id === element.dataset.id);
+                if (productInCard) {
+                    productInCard.querySelector('.cart__product-count').innerText = Number(productInCard.querySelector('.cart__product-count').innerText) + Number(element.querySelector('.product__quantity-value').innerText);
+                    check = true;
+                }
                 if (check == false) {
                     createNewCard();
                 }

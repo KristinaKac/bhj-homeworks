@@ -1,47 +1,36 @@
-localStorage = window.localStorage;
+const list = document.getElementById('tasks__list');
 
-let taskArrRemove = [];
+const button = document.getElementById('tasks__add')
 
-const button = document.querySelector('.tasks__add');
-const input = document.getElementById('task__input');
-const taskList = document.getElementById('tasks__list');
-const form = document.getElementById('tasks__form');
+button.addEventListener('click', function name(event) {
+  event.preventDefault();
+  const input = document.getElementById('task__input');
 
-button.addEventListener('click', addTask);
-form.addEventListener('keydown', addTask);
-taskList.addEventListener('click', removeTask);
-
-
-
-function addTask(event) {
-
-  if ((input.value.trim() != '') && ((event.key === 'Enter') || (event.button == 0))) {
+  if (input.value.trim() !== '') {
 
     let newTask = document.createElement('div');
     newTask.className = 'task';
 
-    let taskTitle = document.createElement('div');
-    taskTitle.className = 'task__title';
-    taskTitle.innerText = input.value;
-    newTask.appendChild(taskTitle);
+    let newTaskTitle = document.createElement('div');
+    newTaskTitle.className = 'task__title';
+    newTaskTitle.innerText = input.value;
 
-    let taskRemove = document.createElement('a');
-    taskRemove.setAttribute('href', '#');
-    taskRemove.className = 'task__remove';
+    let newTaskLink = document.createElement('a');
+    newTaskLink.setAttribute('href', '#');
+    newTaskLink.className = 'task__remove';
+    newTaskLink.innerText = '×';
 
-    taskRemove.innerText = '×';
-    newTask.appendChild(taskRemove);
+    newTask.appendChild(newTaskTitle);
+    newTask.appendChild(newTaskLink);
 
-    taskList.append(newTask);
-
-    taskArrRemove = Array.from(document.querySelectorAll('.task__remove'));
-
-    event.preventDefault();
+    list.appendChild(newTask);
+    input.value = '';
   }
-}
+});
+list.addEventListener('click', function name(event) {
+  const selectElement = event.target;
 
-function removeTask(event) {
-  let task = event.target;
-  task = task.parentNode;
-  task.remove();
-}
+  if (selectElement.classList.contains('task__remove')) {
+    selectElement.parentNode.remove();
+  }
+})
